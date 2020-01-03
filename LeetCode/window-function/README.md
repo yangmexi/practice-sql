@@ -8,7 +8,7 @@ Window functions become handy when we need to calculate across table rows withou
 
 ### Advanced
 
-#### `ROW_NUMBER` 
+#### Identify Continuous Chunks: `ROW_NUMBER` 
 
 Assign each row an increasing row number. This can be greatly helpful when solving problems about consecutive chunks in the table. The row numbers can be used as the marker and thus identify the changes of some target columns. Here's an example:
 
