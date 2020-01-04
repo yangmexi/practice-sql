@@ -60,5 +60,28 @@ Using two attributes to join the table to itself is rather easy to understand, a
 
    Some similar problems: [Running Total for Different Genders](https://leetcode.com/problems/running-total-for-different-genders/), [Last Person to Fit in the Elevator](https://leetcode.com/problems/last-person-to-fit-in-the-elevator/), etc.
 
-   
+### Hard
 
+Take one step further, we could use self-join and place restriction on the aggregated statistics of the joined table. In other words, for each row, we could compare its attributes to some aggregated statistics to decide wheter keep or drop it. This type of problems is more complicated to think of a efficient solution. 
+
+1. [Department Top Three Salaries](https://leetcode.com/problems/department-top-three-salaries/)
+
+   Solution: [leetcode185.sql](https://github.com/yangmexi/practice-sql/blob/master/LeetCode/hard-problems/leetcode185.sql)
+
+   By joinning a table when the salary is higher than each row, we could count the number of salary that is higher, in other words, we can know the ranking of each salary in its department (by `GROUP BY`). Consequently, window function of `DENSE_RANK` can also solve this problem.
+
+   This solution is efficient because when only SELECT once. This problem also can be solved by correlated subquey.
+
+   ```mysql
+   SELECT d.Name AS Department, e1.Name AS Employee, e1.Salary
+   FROM Employee AS e1
+   JOIN Department AS d
+   ON d.Id = e1.DepartmentId
+   LEFT JOIN Employee AS e2
+   ON e1.DepartmentId = e2.DepartmentId 
+      AND e2.Salary >= e1.Salary  -- only count when salary is higher
+   GROUP BY d.Name, e1.Name
+   HAVING COUNT(DISTINCT e2.Salary) <= 3  -- select by # salary is higher
+   ```
+
+   
