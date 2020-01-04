@@ -2,7 +2,7 @@
 
 This type of problems is unsolvable to me at the first time I met them. How can we compute the rate by summing over partial rows and divided it by the result of all rows? How to work on multiple parts of the table at the same time?
 
-Actually, the solution is quite simple and brilliant. It uses CASE statement to create a dummy variable and do the manipulations to them. 
+Actually, the solution is quite simple and brilliant. `CASE` statement is used to create a dummy variable and the manipulations are done to it. 
 
 ## Problems
 
