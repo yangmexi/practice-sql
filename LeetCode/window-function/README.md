@@ -6,6 +6,26 @@ Window functions become handy when we need to calculate across table rows withou
 
 ## Problems
 
+### Basic
+
+Adjust the window
+
+```mysql
+SELECT id, month, Salary
+FROM
+(
+SELECT  id, 
+        month, 
+		-- Every 3 months. ROWS 2 PRECEDING indicates the number of rows or values to precede the current row (1 + 2)
+        SUM(salary) OVER(PARTITION BY id  ORDER BY month ROWS 2 PRECEDING) AS Salary, 
+        DENSE_RANK() OVER(PARTITION BY id ORDER by month DESC) AS month_no
+FROM Employee
+)  src
+--  exclude the most recent month
+where month_no > 1
+ORDER BY id , month desc
+```
+
 ### Advanced
 
 #### Identify Continuous Chunks: `ROW_NUMBER` 
@@ -28,3 +48,6 @@ from Logs) temp
 GROUP BY seq
 ```
 
+#### Day-to-day change: `LAG` / `LEAD`
+
+If only focus on 1 day or 2 days, can also use self-join instead. 

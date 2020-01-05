@@ -1,6 +1,28 @@
 # Self-join
 
-Self-join might be confusing but is very useful under various circumstances. The nice feature of joining a table to itself is that, we could do manipulations using different rows of the table at a time. As a result, most of the time, this would save us from sub-query.
+Self-join might be confusing but is very useful under various circumstances. The nice feature of joining a table to itself is that, we could do manipulations using different rows of the table at a time. As a result, most of the time, this would save us from sub-query or using window functions.
+
+## Typical Usage
+
+Here are some **typical use case** of self-join: 
+
+1. Calculate Aggregated Statistics:
+
+   1. Calculate Running Statistics:
+
+      [Game Play Analysis III](https://leetcode.com/problems/game-play-analysis-iii/), [Find Cumulative Salary of an Employee](https://leetcode.com/problems/find-cumulative-salary-of-an-employee/)
+
+   2. Use Aggregate Statistics to Filter:
+
+      [Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/); [Department Top Three Salaries](https://leetcode.com/problems/department-top-three-salaries/); 
+
+2. Working on Consecutive Rows:
+
+   1. Two Next Rows:
+
+   2. More than two: 
+
+      [Consecutive Numbers](https://leetcode.com/problems/consecutive-numbers/), [Human Traffic of Stadium](https://leetcode.com/problems/human-traffic-of-stadium/)
 
 ## Problems
 ### Basic
@@ -82,6 +104,25 @@ Take one step further, we could use self-join and place restriction on the aggre
       AND e2.Salary >= e1.Salary  -- only count when salary is higher
    GROUP BY d.Name, e1.Name
    HAVING COUNT(DISTINCT e2.Salary) <= 3  -- select by # salary is higher
+   ```
+
+2. [Human Traffic of Stadium](https://leetcode.com/problems/human-traffic-of-stadium/)
+
+   Solution: [leetcode601.sql](https://github.com/yangmexi/practice-sql/blob/master/LeetCode/hard-problems/leetcode601.sql)
+
+   Notice how we deal with the boundary here: keep both table 1 as first/second/third day, then use `DISTINCT`.
+
+   ```mysql
+   SELECT DISTINCT *
+   FROM
+   (SELECT s1.id, s1.visit_date, s1.people
+   FROM stadium AS s1, stadium AS s2, stadium AS s3
+   WHERE s1.people >= 100 AND s2.people >= 100 AND s3.people >= 100
+   AND ((s1.id + 1 = s2.id AND s1.id + 2 = s3.id)
+        OR (s1.id - 1 = s2.id AND s1.id + 1 = s3.id)
+        OR (s1.id - 2 = s3.id AND s1.id - 1 = s2.id)
+       )) temp
+   ORDER BY id
    ```
 
    
