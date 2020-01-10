@@ -6,7 +6,7 @@ This repo covers SQL problems solutions for the purpose of upskilling, so the pr
 
 Here listed typical SQL problems we could encounter, more detailed explanations for each topic can be found in the README files in sub-folders. 
 
-1. Compute Rate:
+1. [Compute Rate](https://github.com/yangmexi/practice-sql/blob/master/LeetCode/compute-rate/README.md):
    1. Trips and Users
 2. Joins (inner/left/right)
 3. Self-joins
