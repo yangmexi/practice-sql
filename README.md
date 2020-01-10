@@ -4,9 +4,17 @@ This repo covers SQL problems solutions for the purpose of upskilling, so the pr
 
 ## Summary
 
-Here listed typical SQL problems we could encounter, more specific explanations for each topic can be found in the README files in sub-folders. 
+Here listed typical SQL problems we could encounter, more detailed explanations for each topic can be found in the README files in sub-folders. 
 
+1. Compute Rate:
+   1. Trips and Users
+2. Joins (inner/left/right)
+3. Self-joins
+4. Window-function
 
+## Useful functions
+
+1. `CAST('2020-01-09' AS DATE)`
 
 ## Appendix: Learning Resources
 
