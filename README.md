@@ -7,10 +7,15 @@ This repo covers SQL problems solutions for the purpose of upskilling, so the pr
 Here listed typical SQL problems we could encounter, more detailed explanations for each topic can be found in the README files in sub-folders. 
 
 1. [Compute Rate](https://github.com/yangmexi/practice-sql/blob/master/LeetCode/compute-rate/):
-   1. Trips and Users
-2. [Joins](https://github.com/yangmexi/practice-sql/tree/master/LeetCode/joins) (inner/left/right)
-3. [Self-joins](https://github.com/yangmexi/practice-sql/tree/master/LeetCode/self-join)
-4. [Window-function](https://github.com/yangmexi/practice-sql/tree/master/LeetCode/window-function)
+   1. Problems: Trips and Users
+2. Aggregate attributes based on external columns
+   1. [Joins](https://github.com/yangmexi/practice-sql/tree/master/LeetCode/joins) (inner/left/right)
+3. Get ranked results within sub-groups
+   1. Problems: [Department Highest Salary](https://leetcode.com/problems/department-highest-salary/), [Department Top Three Salaries](https://leetcode.com/problems/department-top-three-salaries/)
+4. Calculate Running Statistics / Manipulate Consecutive Rows
+   1. [Self-joins](https://github.com/yangmexi/practice-sql/tree/master/LeetCode/self-join)
+   2. [Window-function](https://github.com/yangmexi/practice-sql/tree/master/LeetCode/window-function)
+   3. Problems: 
 
 ## Useful functions
 

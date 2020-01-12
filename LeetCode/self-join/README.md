@@ -100,10 +100,11 @@ Take one step further, we could use self-join and place restriction on the aggre
    JOIN Department AS d
    ON d.Id = e1.DepartmentId
    LEFT JOIN Employee AS e2
-   ON e1.DepartmentId = e2.DepartmentId 
+   ON e1.DepartmentId = e2.DepartmentId  -- combination within department
       AND e2.Salary >= e1.Salary  -- only count when salary is higher
    GROUP BY d.Name, e1.Name
    HAVING COUNT(DISTINCT e2.Salary) <= 3  -- select by # salary is higher
+   -- have to be inclusive: or the first one will be eliminated
    ```
 
 2. [Human Traffic of Stadium](https://leetcode.com/problems/human-traffic-of-stadium/)
