@@ -19,8 +19,38 @@ Here listed typical SQL problems we could encounter, more detailed explanations 
       1. Moving average: [Restaurant Growth](https://leetcode.com/problems/restaurant-growth/)
    2. [Window-function](https://github.com/yangmexi/practice-sql/tree/master/LeetCode/window-function)
    3. Problems: 
+5. Either here or there: `Union`
+   1. Problems: [Friend Requests II: Who Has the Most Friends](https://leetcode.com/problems/friend-requests-ii-who-has-the-most-friends/submissions/)
 
-## Useful functions
+## Basic Concepts
+
+### Database Normalization
+
+**Database normalization** is the process of structuring a relational database in accordance with a series of so-called normal forms in order to reduce **data redundancy** and improve **data integrity**. ([ref](https://en.wikipedia.org/wiki/Database_normalization)). (Example: team_info, players_info, game_incident_info)
+
+Database normalization is useful because it minimizes duplicate data in any single table, and allows for data in the database to grow independently of each other (ie. Types of car engines can grow independent of each type of car). ([ref](https://sqlbolt.com/lesson/select_queries_with_joins))
+
+### Order of Execution
+
+1. `FROM`, `JOIN`: Create a temporary table includes every columns and rows
+2. `WHERE`: Discard rows that don't satisfy the condition
+3. `GROUP BY`: Rows are grouped by the common values
+4. `HAVING`: Discard grouped rows that don't satisfy the constraint
+5. `SELECT`
+6. `DISTINCT`: rows with duplicated values will be discarded
+7. `ORDER BY`
+8. `LIMIT` / `OFFSET`
+
+### Optimize Query
+
+Avoid:
+
+1. `DISTINCT`: slow down the execution time
+2. correlated-subquery
+3. `UNION`: try to use `OUTER JOIN` to avoid it
+4. If you can use `WHERE`, don't use `HAVING`
+
+## Cheatsheets
 
 1. Reformat date types
 
@@ -39,8 +69,8 @@ Here listed typical SQL problems we could encounter, more detailed explanations 
 
 4. String Manipulation
 
-   1. Concat strings: `CONCAT(s1, '(', s2, ...)`
-   2. Split strings: 
+   1. Wildcard: `_` for single character; `%` for >= 0 characters (`LIKE` clause) 
+   2. Concat strings: `CONCAT(s1, '(', s2, ...)`
    3. Substring: `SUBSTR(str, pos, length)`
 
 5. Modify Records
