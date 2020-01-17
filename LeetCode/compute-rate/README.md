@@ -11,7 +11,7 @@ Actually, the solution is quite simple and brilliant. `CASE` statement is used t
    Notice:
 
    1. you have to `SUM` the `CASE` statement;
-2. Find the earliest record for each user: subquery in  `WHERE`
+   2. Find the earliest record for each user: subquery in  `WHERE`
    
    ```mysql
    SELECT ROUND(100 * (SUM(customer_pref_delivery_date = order_date)/ COUNT(*) ), 2) AS immediate_percentage
@@ -45,6 +45,17 @@ Actually, the solution is quite simple and brilliant. `CASE` statement is used t
    )
    AND request_at BETWEEN '2013-10-01' AND '2013-10-03'
    GROUP BY Request_at
+   ```
+
+3. Compute Percentage of Each Group
+
+   Using the nice property of Window Function to get the total sum for each row, then calculate the percentage directly
+
+   ```mysql
+   -- calculate COUNT(*) first, then execute the window function SUM() OVER()
+   SELECT Grade, COUNT(*) * 100.0 / SUM(COUNT(*)) OVER() AS percentage
+   FROM MyTable
+   GROUP BY Grade
    ```
 
    
